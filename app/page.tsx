@@ -74,21 +74,21 @@ const certificates = [
     },
   },
   {
-    title: "Responsive Web Design - Example Institute",
+    title: "Relational Databases & SQL: Complete Guide for Developers",
     year: "2026",
     href: "https://your-certificate-link.com",
     image: {
-      src: "/cert-webdesign.png",
-      alt: "Responsive Web Design Certificate preview",
+      src: "/cert-database-sql.png",
+      alt: "Relational Databases & SQL Certificate preview",
     },
   },
   {
-    title: "UI/UX Design Basics - Example School",
+    title: "ReactJS for Beginners",
     year: "2026",
     href: "https://your-certificate-link.com",
     image: {
-      src: "/cert-uiux.png",
-      alt: "UI/UX Design Certificate preview",
+      src: "/cert-reactjs.png",
+      alt: "ReactJS Certificate preview",
     },
   },
 ];
