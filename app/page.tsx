@@ -16,82 +16,92 @@ const navItems = [
 ];
 
 const profile = {
-  name: "Jeny Mie",
-  role: "Frontend Developer & UI Designer",
+  name: "Jeny Mie Aguilo",
+  role: "Designing intuitive interfaces and creating visual experiences through illustration and graphic design.",
 };
 
 const aboutParagraphs = [
-  "I create simple, responsive, and polished websites for personal brands and small businesses.",
-  "I enjoy clean layouts, soft colors, and user-friendly interfaces.",
+  "I am a designer with a passion for UI design, digital illustration, and graphic design.",
+  "I enjoy creating user-friendly and visually appealing designs that bring ideas to life.",
 ];
 
 const projects = [
   {
-    title: "Beauty Shop",
-    description: "Responsive store page with product cards and checkout UI.",
+    title: "WriteCite (Quote Manager)",
+    description: "WriteCite is a mobile application that allows users to create, customize, and manage their favorite or personal quotes.",
     image: {
-      alt: "Beauty Shop project preview",
-      src: "/project-beauty-shop.png",
+      alt: "WriteCite mobile app preview",
+      src: "/project-writecite.png",
     },
-    stack: ["Next.js", "Tailwind", "TypeScript"],
+    stack: ["React", "JavaScript", "Firebase"],
   },
   {
-    title: "Task Planner",
-    description: "Daily planner with clean lists, filters, and progress states.",
+    title: "Band Poster Design",
+    description: "A digital fan art poster created for a music band.",
     image: {
-      alt: "Task Planner project preview",
-      src: "/project-task-planner.png",
+      alt: "Band Poster digital fan art preview",
+      src: "/project-band-poster.png",
     },
-    stack: ["React", "CSS", "Firebase"],
+    stack: ["Canva"],
   },
   {
-    title: "Travel Journal",
-    description: "Photo-focused blog layout for trips, notes, and highlights.",
+    title: "BayadBox Prototype",
+    description: "A prototype created for capstone project purposes.",
     image: {
-      alt: "Travel Journal project preview",
-      src: "/project-travel-journal.png",
+      alt: "BayadBox Prototype design preview",
+      src: "/project-bayadbox.png",
     },
-    stack: ["HTML", "JavaScript", "API"],
+    stack: ["IbisPaintX"],
   },
 ];
 
 const techStack = [
-  "HTML",
-  "CSS",
   "JavaScript",
-  "TypeScript",
   "React",
-  "Next.js",
-  "Tailwind CSS",
+  "IbisPaintX",
   "Figma",
+  "Canva",
 ];
 
 const certificates = [
-  { title: "Frontend Development - Example Academy", year: "2026" },
-  { title: "Responsive Web Design - Example Institute", year: "2026" },
-  { title: "UI/UX Design Basics - Example School", year: "2026" },
-];
-
-const contacts = [
-  { label: "Email", value: "jeny@example.com" },
-  { label: "Phone", value: "+63 900 000 0000" },
-  { label: "Location", value: "Manila, Philippines" },
-];
-
-const contactLinks = [
-  { label: "Email Me", href: "mailto:jeny@example.com" },
-  { label: "LinkedIn", href: "https://www.linkedin.com", external: true },
-  { label: "GitHub", href: "https://github.com", external: true },
+  {
+    title: "PHP with MySQL: Build 8 PHP and MySQL Projects",
+    year: "2024",
+    href: "https://drive.google.com/file/d/1oLCkI2blPnNLjE4Yx-Gj3GOLT2g5FADH/view?usp=sharing",
+    image: {
+      src: "/cert-php-mysql.png",
+      alt: "PHP with MySQL Certificate preview",
+    },
+  },
+  {
+    title: "Responsive Web Design - Example Institute",
+    year: "2026",
+    href: "https://your-certificate-link.com",
+    image: {
+      src: "/cert-webdesign.png",
+      alt: "Responsive Web Design Certificate preview",
+    },
+  },
+  {
+    title: "UI/UX Design Basics - Example School",
+    year: "2026",
+    href: "https://your-certificate-link.com",
+    image: {
+      src: "/cert-uiux.png",
+      alt: "UI/UX Design Certificate preview",
+    },
+  },
 ];
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(16,185,129,0.28),transparent_32rem),radial-gradient(circle_at_bottom_right,rgba(34,197,94,0.16),transparent_34rem),linear-gradient(135deg,#03110c_0%,#07160f_42%,#000000_100%)] text-[#f4fff8]">
+    <main className="min-h-screen text-[#e8fff4]">
       <SiteHeader brand="Jeny" navItems={navItems} />
       <HeroSection
         eyebrow="Portfolio"
         name={profile.name}
         role={profile.role}
+        resumeUrl="https://drive.google.com/file/d/1kMPZg425ULxa3KD2XmxBeRSElIel2ddJ/view?usp=sharing"
       />
       <AboutSection
         paragraphs={aboutParagraphs}
@@ -100,8 +110,13 @@ export default function Home() {
       <ProjectsSection projects={projects} />
       <TechStackSection technologies={techStack} />
       <CertificatesSection certificates={certificates} />
-      <ContactSection contacts={contacts} links={contactLinks} />
-      <SiteFooter brand="Jeny Mie" links={navItems} />
+      <ContactSection email="aguilojeny@gmail.com" />
+      <SiteFooter
+        brand="Jeny Mie"
+        githubUrl="https://github.com/Jinny03"
+        facebookUrl="https://web.facebook.com/jin.aguilo/"
+        linkedinUrl="https://www.linkedin.com/in/jeny-mie-aguilo-923111406"
+      />
     </main>
   );
 }

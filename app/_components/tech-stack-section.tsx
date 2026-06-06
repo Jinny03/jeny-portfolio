@@ -8,7 +8,7 @@ type TechStackSectionProps = {
 export function TechStackSection({ technologies }: TechStackSectionProps) {
   return (
     <section
-      className="flex min-h-screen scroll-mt-16 items-center border-y border-white/10 bg-black/10"
+      className="flex min-h-screen scroll-mt-16 items-center"
       id="tech-stack"
     >
       <ScrollReveal className="mx-auto w-full max-w-6xl px-5 py-24 sm:px-8">
@@ -16,11 +16,15 @@ export function TechStackSection({ technologies }: TechStackSectionProps) {
         <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
           {technologies.map((tech) => (
             <div
-              className="flex min-h-20 items-center gap-4 rounded-lg border border-white/15 bg-white/10 px-5 py-4 font-semibold text-emerald-50 shadow-[0_16px_40px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+              className="glass-card group relative flex min-h-20 cursor-default items-center gap-4 rounded-2xl px-5 py-4 font-semibold text-emerald-50"
               key={tech}
             >
+              {/* Top shimmer on hover */}
+              <div className="absolute inset-x-0 top-0 h-px rounded-t-2xl bg-gradient-to-r from-transparent via-[#86b15d]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              {/* Left accent glow */}
+              <div className="absolute left-0 top-1/4 bottom-1/4 w-px bg-[#86b15d]/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               <TechIcon label={tech} />
-              <span>{tech}</span>
+              <span className="transition-colors duration-300 group-hover:text-[#86b15d]">{tech}</span>
             </div>
           ))}
         </div>
@@ -31,38 +35,15 @@ export function TechStackSection({ technologies }: TechStackSectionProps) {
 
 function TechIcon({ label }: { label: string }) {
   const baseClass =
-    "flex size-11 shrink-0 items-center justify-center rounded-full border border-emerald-200/25 bg-emerald-300/10 text-sm font-bold text-emerald-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]";
+    "flex size-11 shrink-0 items-center justify-center rounded-full border border-[#076653]/40 bg-[#076653]/20 text-sm font-bold text-emerald-200 shadow-[inset_0_1px_0_rgba(227,239,38,0.1)] transition-all duration-300 group-hover:border-[#86b15d]/30 group-hover:bg-[#86b15d]/8 group-hover:text-[#86b15d] group-hover:shadow-[0_0_12px_rgba(227,239,38,0.12),inset_0_1px_0_rgba(227,239,38,0.2)]";
 
   if (label === "React") {
     return (
       <span aria-hidden="true" className={baseClass}>
         <svg className="size-7" fill="none" viewBox="0 0 32 32">
-          <ellipse
-            cx="16"
-            cy="16"
-            rx="12"
-            ry="5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-          />
-          <ellipse
-            cx="16"
-            cy="16"
-            rx="12"
-            ry="5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            transform="rotate(60 16 16)"
-          />
-          <ellipse
-            cx="16"
-            cy="16"
-            rx="12"
-            ry="5"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            transform="rotate(120 16 16)"
-          />
+          <ellipse cx="16" cy="16" rx="12" ry="5" stroke="currentColor" strokeWidth="1.8" />
+          <ellipse cx="16" cy="16" rx="12" ry="5" stroke="currentColor" strokeWidth="1.8" transform="rotate(60 16 16)" />
+          <ellipse cx="16" cy="16" rx="12" ry="5" stroke="currentColor" strokeWidth="1.8" transform="rotate(120 16 16)" />
           <circle cx="16" cy="16" fill="currentColor" r="2.6" />
         </svg>
       </span>

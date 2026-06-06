@@ -1,31 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #020604;
-  --foreground: #f4fff8;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-html {
-  scroll-behavior: smooth;
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background:
-    radial-gradient(circle at top left, rgba(16, 185, 129, 0.28), transparent 32rem),
-    radial-gradient(circle at bottom right, rgba(34, 197, 94, 0.16), transparent 34rem),
-    linear-gradient(135deg, #03110c 0%, #07160f 42%, #000000 100%);
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  margin: 0;
+  color: #e8fff4;
+  font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+
+  /* Deep grain + rich #86b15d/#010a06 gradient background */
+  background-color: #010A06;
+  background-image:
+    /* Heavy grain — SVG fractalNoise at higher opacity for real graininess */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='overlay'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23g)' opacity='0.13'/%3E%3C/svg%3E"),
+    /* Second grain pass at finer frequency for extra texture */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E"),
+    /* #86b15d sage-gold glow — top-left hero area */
+    radial-gradient(ellipse 70% 55% at 8% 10%, rgba(134, 177, 93, 0.22) 0%, transparent 55%),
+    /* #86b15d warm accent — bottom-right */
+    radial-gradient(ellipse 65% 50% at 92% 88%, rgba(134, 177, 93, 0.16) 0%, transparent 52%),
+    /* Deep teal core blobs */
+    radial-gradient(ellipse 80% 60% at 20% 25%, rgba(7, 102, 83, 0.50) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 72%, rgba(12, 52, 44, 0.65) 0%, transparent 55%),
+    /* #86b15d mid-tone sweep across center */
+    radial-gradient(ellipse 90% 35% at 50% 50%, rgba(134, 177, 93, 0.07) 0%, transparent 60%),
+    /* #010a06 anchor gradient bleeding in from edges */
+    radial-gradient(ellipse 100% 40% at 0% 100%, rgba(1, 10, 6, 0.9) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 40% at 100% 0%, rgba(1, 10, 6, 0.85) 0%, transparent 55%),
+    /* Base diagonal: #010a06 → #0C342C → #86b15d tint → #010a06 */
+    linear-gradient(150deg, #010A06 0%, #0C342C 30%, #1a3a1a 52%, rgba(134,177,93,0.12) 65%, #010A06 100%);
+  background-attachment: fixed;
+}
+
+/* Persistent grain overlay on top of everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='turbulence' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23grain)' opacity='0.09'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  mix-blend-mode: overlay;
+  opacity: 1;
+}
+
+/* Glass card base — used via @apply in components */
+@layer components {
+  .glass-card {
+    border: 1px solid rgba(227, 239, 38, 0.08);
+    background: rgba(12, 52, 44, 0.35);
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    box-shadow:
+      0 0 0 0.5px rgba(7, 102, 83, 0.3) inset,
+      0 24px 60px rgba(1, 10, 6, 0.5),
+      0 1px 0 rgba(227, 239, 38, 0.06) inset;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease, background 0.25s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(134, 177, 93, 0.25);
+    background: rgba(12, 52, 44, 0.5);
+    box-shadow:
+      0 0 0 0.5px rgba(134, 177, 93, 0.18) inset,
+      0 32px 80px rgba(1, 10, 6, 0.55),
+      0 1px 0 rgba(134, 177, 93, 0.14) inset;
+    transform: translateY(-3px);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0 1.5rem;
+    font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(134, 177, 93, 0.35);
+    background: rgba(134, 177, 93, 0.12);
+    color: #86b15d;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 0 24px rgba(134, 177, 93, 0.10), 0 4px 16px rgba(1,10,6,0.4);
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: rgba(134, 177, 93, 0.22);
+    border-color: #86b15d;
+    box-shadow: 0 0 36px rgba(134, 177, 93, 0.20), 0 6px 24px rgba(1,10,6,0.5);
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0 1.5rem;
+    font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(7, 102, 83, 0.4);
+    background: rgba(7, 102, 83, 0.15);
+    color: #e8fff4;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(7, 102, 83, 0.28);
+    border-color: rgba(7, 102, 83, 0.65);
+    transform: translateY(-2px);
+  }
+
+  .input-field {
+    min-height: 3rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(7, 102, 83, 0.3);
+    background: rgba(1, 10, 6, 0.4);
+    padding: 0 1rem;
+    font-size: 1rem;
+    font-family: var(--font-dm-sans), Arial, Helvetica, sans-serif;
+    color: #e8fff4;
+    outline: none;
+    backdrop-filter: blur(8px);
+    transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .input-field:focus {
+    border-color: rgba(134, 177, 93, 0.45);
+    background: rgba(12, 52, 44, 0.4);
+    box-shadow: 0 0 0 3px rgba(134, 177, 93, 0.09);
+  }
+
+  .input-field::placeholder {
+    color: rgba(168, 243, 208, 0.3);
+  }
+}
+
+/* ensure content above overlays */
+body > * {
+  position: relative;
+  z-index: 1;
 }
 
 ::selection {
-  background: #86efac;
-  color: #03110c;
+  background: #86b15d;
+  color: #010a06;
 }
