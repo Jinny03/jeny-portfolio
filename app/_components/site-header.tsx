@@ -1,30 +1,27 @@
-type NavItem = {
-  href: string;
-  label: string;
-};
-
-type SiteHeaderProps = {
-  brand: string;
-  navItems: readonly NavItem[];
-};
+type NavItem = { href: string; label: string };
+type SiteHeaderProps = { brand: string; navItems: readonly NavItem[] };
 
 export function SiteHeader({ brand, navItems }: SiteHeaderProps) {
   return (
-    <header className="sticky top-0 z-20 border-b border-[#076653]/30 bg-[rgba(1,10,6,0.6)] backdrop-blur-xl">
+    <header className="sticky top-0 z-20 border-b border-[#064d3a]/20 bg-[rgba(1,10,6,0.55)] backdrop-blur-2xl">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-        <a
-          className="text-xl font-semibold tracking-tight text-white transition hover:text-[#86b15d]"
-          href="#home"
-        >
-          {brand}
-          <span className="text-[#86b15d]">.</span>
+        <a href="#home" className="flex items-baseline gap-1 group">
+          <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontStyle: "italic" }}
+            className="text-2xl font-bold text-[#dff0c8] transition-colors group-hover:text-[#7aad52]">
+            {brand}
+          </span>
+          <span className="text-[#7aad52] text-2xl" style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}>.</span>
         </a>
-        <div className="hidden items-center gap-6 text-sm font-medium text-emerald-50/60 md:flex">
+
+        <div className="hidden items-center gap-7 md:flex">
           {navItems.map((item) => (
             <a
-              className="relative transition hover:text-[#86b15d] after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-[#86b15d] after:transition-all after:duration-300 hover:after:w-full"
-              href={item.href}
               key={item.href}
+              href={item.href}
+              style={{ fontFamily: "'Space Mono', monospace", fontSize: "0.7rem", letterSpacing: "0.12em" }}
+              className="relative text-[#dff0c8]/50 uppercase transition-colors duration-300 hover:text-[#7aad52]
+                after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-0 after:bg-[#7aad52]
+                after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.label}
             </a>

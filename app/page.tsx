@@ -74,18 +74,27 @@ const certificates = [
     },
   },
   {
-    title: "Relational Databases & SQL: Complete Guide for Developers",
-    year: "2026",
-    href: "https://your-certificate-link.com",
+    title: "Build Comple CMS Blog in PHP MySQL Bootstrap & PDO",
+    year: "2024",
+    href: "https://drive.google.com/file/d/1ELIIXaRqhBOpsxVvffBTT7qj0PFvwain/view?usp=sharing",
     image: {
-      src: "/cert-database-sql.png",
-      alt: "Relational Databases & SQL Certificate preview",
+      src: "/cert-phpmysqlbootstrap.png",
+      alt: "PHP MySQL Bootstrap & PDO Certificate preview",
+    },
+  },
+  {
+    title: "Introduction to SQL",
+    year: "2024",
+    href: "https://drive.google.com/file/d/1N19gYTyz7Ub8WKaefFyUdNI_MNW14gt7/view?usp=sharing",
+    image: {
+      src: "/cert-sqlintro.png",
+      alt: "Intro to SQL Certificate preview",
     },
   },
   {
     title: "ReactJS for Beginners",
     year: "2026",
-    href: "https://your-certificate-link.com",
+    href: "https://drive.google.com/file/d/1Bn5iqBgn58hW4EGoEssqgG8_-y9jZuxK/view?usp=sharing",
     image: {
       src: "/cert-reactjs.png",
       alt: "ReactJS Certificate preview",
@@ -112,11 +121,11 @@ export default function Home() {
       <CertificatesSection certificates={certificates} />
       <ContactSection email="aguilojeny@gmail.com" />
       <SiteFooter
-        brand="Jeny Mie"
-        githubUrl="https://github.com/Jinny03"
-        facebookUrl="https://web.facebook.com/jin.aguilo/"
-        linkedinUrl="https://www.linkedin.com/in/jeny-mie-aguilo-923111406"
-      />
+  brand="Jeny Mie"
+  githubUrl="https://github.com/Jinny03"
+  facebookUrl="https://web.facebook.com/jin.aguilo/"
+  linkedinUrl="https://www.linkedin.com/in/jeny-mie-aguilo-923111406"
+/>
     </main>
   );
 }
